@@ -1,0 +1,17 @@
+/* Add custom styles here */
+body {
+    background-color: #f8f9fa;
+  }
+  .container {
+    margin-top: 50px;
+  }
+  .table {
+    background-color: #fff;
+    border-radius: 5px;
+  }
+  th, td {
+    text-align: center;
+  }
+  .btn {
+    border-radius: 20px;
+  }

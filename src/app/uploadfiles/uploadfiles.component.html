@@ -1,0 +1,29 @@
+<div class="container mt-5">
+    <div class="card" *ngFor="let formIndex of getVisibleFormIndexes()">
+      <div class="card-body">
+        <h2 class="card-title">Upload Files</h2>
+        <p class="card-text">Upload: {{ fileTypes[formIndex] }}</p>
+        <input type="file" class="form-control mb-3" (change)="onFileSelected($event, fileTypes[formIndex])" multiple>
+      </div>
+    </div>
+    <div class="mt-3">
+      <button *ngIf="currentFormIndex < fileTypes.length - filesPerStep"
+              class="btn btn-secondary"
+              (click)="proceedNext()">Proceed Next</button>
+      <button *ngIf="currentFormIndex >= fileTypes.length - filesPerStep"
+              class="btn btn-success"
+              (click)="submitAllFiles()">Submit All Files</button>
+    </div>
+</div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

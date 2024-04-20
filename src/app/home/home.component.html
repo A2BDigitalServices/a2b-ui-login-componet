@@ -1,0 +1,35 @@
+<!-- <div>
+<li><a *ngIf="service.isUserLoggedIn()" routerLink="/logout" class="nav-link">Logout</a></li>
+</div> -->
+
+<!-- home.component.html -->
+
+<!-- home.component.html -->
+
+<!--<iframe src="https://a2bdigitalservice.000webhostapp.com/dashboard.html" style="width: 1250px; height: 600px"></iframe> -->
+
+<!-- dashboard.component.html -->
+<div class="container">
+    <nav class="sidenav">
+      <ul>
+        <li><a routerLink="/case">CreateCase</a></li>
+        <li><a *ngIf="service.isUserLoggedIn()" routerLink="/todos">Cases</a></li>
+        <li><a href="https://partner.werize.com/homePage" target="_blank">WeRize</a></li>
+        <li><a href="https://lms.starpowerzdigiloans.com/login" target="_blank">DigiLoans</a></li>
+        <li><a href="https://ibog.inditrade.com/" target="_blank">iBOG</a></li>
+        <li><a href="https://channel.lendingkart.com/dsachannelpartner-xlr8/partner/login" target="_blank">Leadingkart</a></li>
+        <li><a href="https://csellos.chola.murugappa.com/portal/login" target="_blank">Chola</a></li>
+        <li><a href="https://adityabirla-platform.finbox.in/signin-mobile" target="_blank">AdityaBirla</a></li>
+        <li><a href="https://xpresso.roinet.in/XPRESSO/Login.aspx" target="_blank">Roinet</a></li>
+        <li><a href="https://ilens.icicibank.com/login/" target="_blank">ICICI Bank</a></li>
+      </ul>
+    </nav>
+    <div class="content">
+      <div class="main">
+        <div class="card" *ngFor="let card of cards">
+          <a [href]="card.url" target="_blank" style="color: red;">{{ card.name }}</a>
+        </div>
+      </div>
+    </div>
+</div>
+  

@@ -1,0 +1,42 @@
+/* dashboard.component.css */
+.container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    margin-left: -20px; /* Adjusting margin to remove white space */
+  }
+  
+  .sidenav {
+    background-color: #333333; /* Changing background color to black grey */
+    color: #fff;
+    width: 200px;
+    padding: 20px;
+    border-right: 1px solid #ffffff; /* Adding white border to the right */
+  }
+  
+  .main {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .card {
+    width: calc(25% - 20px);
+    margin: 10px;
+    background-color: skyblue;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s ease;
+  }
+  
+  .card:hover {
+    background-color: lightgreen;
+  }
+  

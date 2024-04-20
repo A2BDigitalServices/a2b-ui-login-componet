@@ -1,0 +1,32 @@
+
+<h1 class="text-center mt-4">***Update Case Status***</h1>
+<body>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<div class="container">
+  <div class="alert alert-warning" *ngIf="todoForm.invalid">Please fill in all fields</div>
+  <form (ngSubmit)="!todoForm.invalid && saveTodo()" #todoForm="ngForm">
+    <fieldset class="form-group">
+      <label for="firstname">First Name</label>
+      <input type="text" [(ngModel)]="todo.firstname" class="form-control" id="firstname" name="firstname" required>
+    </fieldset>
+
+    <fieldset class="form-group">
+      <label for="lastname">Last Name</label>
+      <input type="text" [(ngModel)]="todo.lastname" class="form-control" id="lastname" name="lastname" required>
+    </fieldset> 
+
+    <fieldset class="form-group">
+      <label for="email">Email</label>
+      <input type="email" [(ngModel)]="todo.email" class="form-control" id="email" name="email" required>
+    </fieldset>
+
+    <fieldset class="form-group">
+      <label for="status">Status</label>
+      <input type="text" [(ngModel)]="todo.status" class="form-control" id="status" name="status" required>
+    </fieldset>
+  
+    <button type="submit" class="btn btn-success btn-block">Save</button>
+  </form>
+</div>
+
+</body>

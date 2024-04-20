@@ -1,0 +1,31 @@
+<!-- <h1>Login Page</h1>
+<div class="container">
+<h1 style="color:red ;" *ngIf="invalidLogin">Invalid Credentials</h1>
+<label>Username: </label><br>
+<input type="text" name="username" [(ngModel)]="username"><br>
+<label>Password: </label><br>
+<input type="password" name="password" [(ngModel)]="password"><br><br>
+<button (click)=handleLogin() class="btn btn-success">Login</button>
+</div> -->
+
+
+
+<div class="background-wrap">
+    <div class="background"></div>
+</div>
+
+<form id="accesspanel" action="">
+    <h1 id="litheader">A2B Digital Services Login</h1>
+    <h4 style="color:red; text-align: center;" *ngIf="invalidLogin">Invalid Credentials</h4>
+    <div class="inset">
+        <p>
+            <input type="text" name="username" [(ngModel)]='userModel.username' id="username" placeholder="username">
+        </p>
+        <p>
+            <input type="password" name="password" [(ngModel)]='userModel.password' id="password" placeholder="password">
+        </p>
+    </div>
+    <p class="p-container">
+        <input type="submit" name="Login" id="go" value="Login" (click)="doLogin()">
+    </p>
+</form>

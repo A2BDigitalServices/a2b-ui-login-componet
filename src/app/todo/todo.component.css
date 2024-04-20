@@ -1,0 +1,17 @@
+/* .ng-invalid:not(form){
+    border-left: 5px solid red;
+} */
+
+ /* Add custom styles here */
+ body {
+    background-color: #f8f9fa;
+  }
+  .container {
+    margin-top: 50px;
+  }
+  .form-group {
+    margin-bottom: 20px;
+  }
+  .btn {
+    border-radius: 20px;
+  }
