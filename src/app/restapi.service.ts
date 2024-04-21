@@ -18,8 +18,8 @@ export class RestapiService {
     // let heaserstring = 'Basic ' + btoa(username + ':' + password)
     // const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
     // return this.http.get("http://localhost:8081/auth", { headers })
-      //return this.http.post('https://a2b-login-java-microservice.onrender.com/login',user,{ responseType: 'text' })
-      return this.http.post('http://localhost:8081/login',user,{ responseType: 'text' })
+      return this.http.post('https://a2b-login-java-microservice.onrender.com/login',user,{ responseType: 'text' })
+      //return this.http.post('http://localhost:8081/login',user,{ responseType: 'text' })
       .pipe(
         map(
           data => {
@@ -66,8 +66,8 @@ export class RestapiService {
   }
 
   getalltodos(){
-    //return this.http.get<FormData[]>('https://a2b-login-java-microservice.onrender.com/forms');
-    return this.http.get<FormData[]>('http://localhost:8081/forms');
+    return this.http.get<CustomFormData[]>('https://a2b-login-java-microservice.onrender.com/forms');
+    //return this.http.get<CustomFormData[]>('http://localhost:8081/forms');
   }
 
   // createTodo(todo:OpenLoan){
@@ -75,8 +75,8 @@ export class RestapiService {
   //   return this.http.post<OpenLoan>('https://a2b-login-java-microservice.onrender.com/open',todo);
   // }
   createTodo(todo:FormData){
-    //return this.http.post<FormData>('https://a2b-login-java-microservice.onrender.com/form',todo);
-    return this.http.post<FormData>('http:localhost:8081/form',todo);
+    return this.http.post<CustomFormData>('https://a2b-login-java-microservice.onrender.com/form',todo);
+    //return this.http.post<CustomFormData>('http:localhost:8081/form',todo);
   }
   // deleteTodo(id:any){
   //   // return this.http.delete(`http://localhost:8081/loans/delete/${id}`);
@@ -84,8 +84,8 @@ export class RestapiService {
   // }
 
   deleteTodo(id:any){
-    //return this.http.delete(`https://a2b-login-java-microservice.onrender.com/forms/delete/${id}`);
-    return this.http.delete(`http://localhost:8081/forms/delete/${id}`);
+    return this.http.delete(`https://a2b-login-java-microservice.onrender.com/forms/delete/${id}`);
+    //return this.http.delete(`http://localhost:8081/forms/delete/${id}`);
   }
 
   // getTodo(id:any){
@@ -94,17 +94,17 @@ export class RestapiService {
   // }
  
   getTodo(id:any){
-    //return this.http.get<FormData>(`https://a2b-login-java-microservice.onrender.com/forms/${id}`);
-    return this.http.get<FormData>(`http://localhost:8081/forms/${id}`);
+    return this.http.get<CustomFormData>(`https://a2b-login-java-microservice.onrender.com/forms/${id}`);
+    //return this.http.get<CustomFormData>(`http://localhost:8081/forms/${id}`);
   }
   // modifyTodo(id:any,todo:OpenLoan){
   //   // return this.http.put(`http://localhost:8081/loans/update/${id}`,todo);
   //   return this.http.put(`https://a2b-login-java-microservice.onrender.com/loans/update/${id}`,todo);
   // }
-  modifyTodo(id:any,todo:FormData){
+  modifyTodo(id:any,todo:CustomFormData){
    
-    //return this.http.put(`https://a2b-login-java-microservice.onrender.com/forms/update/${id}`,todo);
-    return this.http.put(`http://localhost:8081/forms/update/${id}`,todo);
+    return this.http.put(`https://a2b-login-java-microservice.onrender.com/forms/update/${id}`,todo);
+    //return this.http.put(`http://localhost:8081/forms/update/${id}`,todo);
 
   }
 }
@@ -124,7 +124,7 @@ export class RestapiService {
 //   ){}
 // }
 
-export class FormData{
+export class CustomFormData{
   constructor(
     public id:number,
     public firstname: string,
@@ -165,6 +165,7 @@ export class FormData{
     public nomineename: string,
     public nomineeage: string,
     public nomineephone: string,
-    public nomineeemail: string
+    public nomineeemail: string,
+    public status: String
   ){}
 }

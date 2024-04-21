@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 //import { RestapiService, OpenLoan } from '../restapi.service';
-import { RestapiService, FormData } from '../restapi.service';
+import { RestapiService, CustomFormData } from '../restapi.service';
 
 @Component({
   selector: 'app-todo',
@@ -18,7 +18,7 @@ export class TodoComponent implements OnInit {
   ngOnInit(): void {
     this.id=this.route.snapshot.params['id'];
     //this.todo = new OpenLoan(this.id,'Please enter firstname','Please enter lastname','Please enter email','Please enter phone','Please enter address','Please enter partnerType','Please enter status','Please enter remarks');
-    this.todo = new FormData(this.id,'Please enter Firstname',
+    this.todo = new CustomFormData(this.id,'Please enter Firstname',
                             'Please enter Lastname','Please enter Email',
                             'Please enter Aadharnumber','Please enter DateofBirth',
                             'Please enter PAN Number','Please enter Parent Name',
@@ -37,7 +37,7 @@ export class TodoComponent implements OnInit {
                             'Please enter Reference1 Name','Please enter Reference1 Phone',
                             'Please enter Reference2 Name','Please enter Reference2 Phone',
                             'Please enter Nominee Name','Please enter Nominee Age',
-                            'Please enter Nominee Phone', 'Please enter Nominee Email');
+                            'Please enter Nominee Phone', 'Please enter Nominee Email','Please enter Stattus');
     if(this.id!=-1){
       this.retriveTodo();
     }

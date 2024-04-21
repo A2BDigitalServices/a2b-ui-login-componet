@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 //import { RestapiService, OpenLoan } from '../restapi.service';
-import { RestapiService, FormData } from '../restapi.service';
+import { RestapiService, CustomFormData } from '../restapi.service';
 @Component({
   selector: 'app-todos',
   templateUrl: './todos.component.html',
@@ -10,7 +10,7 @@ import { RestapiService, FormData } from '../restapi.service';
 export class TodosComponent implements OnInit {
 
   //todolist: OpenLoan[] = [];
-  todolist: FormData[] = [];
+  todolist: CustomFormData[] = [];
   errmssg:string='';
   delmssg:string=''
   constructor(private router:Router, private service:RestapiService) { }
@@ -22,7 +22,7 @@ export class TodosComponent implements OnInit {
   alltodos(){
     this.service.getalltodos().subscribe(
       response => {
-        this.todolist=response;
+        this.todolist = response;
       },
       error => {
         this.errmssg=error.error.message;

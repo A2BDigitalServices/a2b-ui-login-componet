@@ -23,10 +23,10 @@
         <td>{{todo.email}}</td>
         <td>{{todo.firstname}}</td>
         <td>{{todo.lastname}}</td>
-        <td><span class="badge badge-info">Open</span></td>
+        <td><span class="badge badge-info">{{todo.status}}</span></td>
         <td>
           <button (click)="updateTodo(todo.id)" class="btn btn-success">Update</button>
-          <button (click)="deleteTodo(todo.id)" class="btn btn-warning">Delete</button>
+          <button (click)="deleteTodo(todo.id)" class="btn btn-danger">Delete</button>
           <button (click)="uploadTodo(todo.id)" class="btn btn-warning">Upload</button>
           <!-- <li><a *ngIf="service.isUserLoggedIn()" routerLink="/todos">Cases</a></li> -->
         </td>

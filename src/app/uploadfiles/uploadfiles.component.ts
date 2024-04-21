@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RestapiService, CustomFormData } from '../restapi.service';
 
 interface FileUploadData {
   fileType: string;
@@ -13,10 +15,48 @@ interface FileUploadData {
 })
 export class UploadfilesComponent implements OnInit {
 
+  id:any='';
+  todo:any
+
+  constructor(private http: HttpClient,private router:Router,private route:ActivatedRoute,private service:RestapiService) { }
+
   ngOnInit(): void {
+    this.id=this.route.snapshot.params['id'];
+    this.todo = new CustomFormData(this.id,'Please enter Firstname',
+                            'Please enter Lastname','Please enter Email',
+                            'Please enter Aadharnumber','Please enter DateofBirth',
+                            'Please enter PAN Number','Please enter Parent Name',
+                            'Please enter Parent Phone','Please enter Parent Email',
+                            'Please enter Present AddressLine 1','Please enter Present AddressLine 2',
+                            'Please enter Present State','Please enter Present Country',
+                            'Please enter Present Pincode','Please enter Permanent AddressLine 1',
+                            'Please enter Permanent AddressLine 2','Please enter Permanent State',
+                            'Please enter Present Country', 'Please enter Present Pincode',
+                            'Please enter Company Name','Please enter Company Address Line 1',
+                            'Please enter Company Address Line 2','Please enter Company State',
+                            'Please enter Company Country','Company Pincode',
+                            'Please enter Company Email','Please enter Monthly Income',
+                            'Please enter Required Amount','Please enter Tenure',
+                            'Please enter Active Loans','Please enter your current EMI Amount',
+                            'Please enter Reference1 Name','Please enter Reference1 Phone',
+                            'Please enter Reference2 Name','Please enter Reference2 Phone',
+                            'Please enter Nominee Name','Please enter Nominee Age',
+                            'Please enter Nominee Phone', 'Please enter Nominee Email',
+                            'Please enter Status');
+    if(this.id!=-1){
+      this.retriveTodo();
+    }
   }
 
-  filesToUpload: FileUploadData[] = [];
+  retriveTodo(){
+    this.service.getTodo(this.id).subscribe(
+      data => {
+        this.todo = data;
+        this.todo.status = 'Progress'; // Set status after receiving data
+      }   
+   )
+  }
+  filesToUpload: { [key: string]: FileUploadData } = {}; // Dictionary to store selected file for each form type
   currentFormIndex: number = 0;
   filesPerStep: number = 3; // Number of forms to show in each step
   fileTypes: string[] = [
@@ -35,16 +75,25 @@ export class UploadfilesComponent implements OnInit {
     'Nominee Image'
   ];
 
-  constructor(private http: HttpClient) { }
+  
 
   onFileSelected(event: any, fileType: string) {
-    const files = event.target.files;
-    for (let i = 0; i < files.length; i++) {
-      this.filesToUpload.push({ fileType, file: files[i] });
-    }
+    const file = event.target.files[0];
+    this.filesToUpload[fileType] = { fileType, file }; // Store the selected file for the corresponding form type
   }
 
   proceedNext() {
+    // Check if all forms in the current step have been uploaded
+    const startIndex = this.currentFormIndex;
+    const endIndex = Math.min(startIndex + this.filesPerStep, this.fileTypes.length);
+    for (let i = startIndex; i < endIndex; i++) {
+      const fileType = this.fileTypes[i];
+      if (!this.filesToUpload[fileType]) {
+        alert('Please upload files for all forms.');
+        return; // Don't proceed if any form is not uploaded
+      }
+    }
+
     this.currentFormIndex += this.filesPerStep;
     if (this.currentFormIndex >= this.fileTypes.length) {
       console.log("Reached the last form.");
@@ -53,27 +102,55 @@ export class UploadfilesComponent implements OnInit {
   }
 
   submitAllFiles() {
-    const filesToUpload = this.filesToUpload.slice(this.currentFormIndex - this.filesPerStep, this.currentFormIndex);
+    // Validate if all forms in the last step have been uploaded
+    const startIndex = this.currentFormIndex - this.filesPerStep;
+    const endIndex = this.currentFormIndex;
+    for (let i = startIndex; i < endIndex; i++) {
+      const fileType = this.fileTypes[i];
+      if (!this.filesToUpload[fileType]) {
+        alert('Please upload files for all forms.');
+        return; // Don't submit if any form in the last step is not uploaded
+      }
+    }
 
-    filesToUpload.forEach((fileData) => {
-      const formData = new FormData();
-      formData.append('image', fileData.file);
+    // Proceed to submit files
+    for (const fileType of this.fileTypes) {
+      const fileData = this.filesToUpload[fileType];
+      if (fileData) {
+        const formData = new FormData();
+        formData.append('image', fileData.file);
 
-      this.http.post<any>('http://your-java-api-url/upload', formData).subscribe(
-        response => {
-          console.log('File uploaded successfully!', response);
-        },
-        error => {
-          console.error('Error uploading file:', error);
-          // Handle error
-        }
-      );
-    });
+        //this.http.post<any>('http://localhost:8081/image', formData).subscribe(
+        this.http.post<any>('https://a2b-login-java-microservice.onrender.com/image', formData).subscribe(
+          response => {
+            console.log(`File (${fileType}) uploaded successfully!`, response);
+          },
+          error => {
+            console.error(`Error uploading file (${fileType}):`, error);
+            // Handle error
+          }
+        );
+      }
+    }
+    this.service.modifyTodo(this.id,this.todo).subscribe(
+      data =>{
+        this.router.navigate(['home']);
+      }
+    )
+    alert('Thank You!.. All files are uploded successfully');
+    //this.router.navigate(['/home'])
+    // Reset filesToUpload and currentFormIndex after submission
+    this.filesToUpload = {};
+    this.currentFormIndex = 0;
   }
 
-  getVisibleFormIndexes(): number[] {
+  getVisibleForms(): string[] {
+    const visibleForms: string[] = [];
     const startIndex = this.currentFormIndex;
     const endIndex = Math.min(startIndex + this.filesPerStep, this.fileTypes.length);
-    return Array.from({ length: endIndex - startIndex }, (_, index) => startIndex + index);
+    for (let i = startIndex; i < endIndex; i++) {
+      visibleForms.push(this.fileTypes[i]);
+    }
+    return visibleForms;
   }
 }
