@@ -1,0 +1,17 @@
+
+<br>
+<body>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<div class="container">
+  <div class="alert alert-warning" *ngIf="todoForm.invalid">Please fill in all fields</div>
+  <form (ngSubmit)="!todoForm.invalid && sendMail()" #todoForm="ngForm">
+    <fieldset class="form-group">
+      <label for="firstname">Enter Email to send documnets </label>
+      <input type="text" [(ngModel)]="mailRequest.to" class="form-control" id="firstname" name="firstname" required>
+    </fieldset>
+  
+    <button type="submit" class="btn btn-success btn-block">Send</button>
+  </form>
+</div>
+
+</body>

@@ -17,6 +17,12 @@ import { TodoComponent } from './todo/todo.component';
 import { SignupComponent } from './signup/signup.component';
 import { CreatecaseComponent } from './createcase/createcase.component';
 import { UploadfilesComponent } from './uploadfiles/uploadfiles.component';
+import { SendEmailThirdPartyComponent } from './send-email-third-party/send-email-third-party.component';
+import { ViewCaseComponent } from './view-case/view-case.component';
+import { SideNavComponent } from './side-nav/side-nav.component';
+import { StatusComponent } from './status/status.component';
+import { PartnersComponent } from './partners/partners.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +36,12 @@ import { UploadfilesComponent } from './uploadfiles/uploadfiles.component';
     TodoComponent,
     SignupComponent,
     CreatecaseComponent,
-    UploadfilesComponent
+    UploadfilesComponent,
+    SendEmailThirdPartyComponent,
+    ViewCaseComponent,
+    SideNavComponent,
+    StatusComponent,
+    PartnersComponent
   ],
   imports: [
     BrowserModule,

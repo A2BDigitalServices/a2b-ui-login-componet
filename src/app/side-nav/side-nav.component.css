@@ -1,0 +1,8 @@
+.sidenav {
+    background-color: #333333; /* Changing background color to black grey */
+    color: #fff;
+    width: 130px;
+    height: 1050px;
+    padding: 20px;
+    border-right: 1px solid #ffffff; /* Adding white border to the right */
+  }

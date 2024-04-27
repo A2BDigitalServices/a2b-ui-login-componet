@@ -1,0 +1,8 @@
+<nav class="sidenav">
+    <ul>
+      <li *ngIf="service.isUserLoggedIn() || service.isUserEmployee() || service.isUserAdmin()"><a routerLink="/status">Home</a></li>
+      <li *ngIf="service.isUserLoggedIn() || service.isUserEmployee() || service.isUserAdmin()"><a routerLink="/case">Apply</a></li>
+      <li *ngIf="service.isUserLoggedIn() || service.isUserEmployee() || service.isUserAdmin()"><a routerLink="/todos">Cases</a></li>
+      <li *ngIf="service.isUserLoggedIn() || service.isUserEmployee() || service.isUserAdmin()"><a routerLink="/partners">Partners</a></li>
+    </ul>
+  </nav>

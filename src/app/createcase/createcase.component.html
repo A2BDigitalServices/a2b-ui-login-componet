@@ -16,12 +16,20 @@
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
             </div>
+            <div>
+                <label for="phone">Phone:</label>
+                <input type="text" id="phone" name="phone" required>
+            </div>
             <button type="button" class="btn" (click)="proceedToNextStep(2)">Proceed to Step 2</button>
         </div>
 
         <!-- Form Step 2 -->
         <div class="form-step" id="step2">
-            <h2>Step 2: Aadhar, DOB, and PAN</h2>
+            <h2>Step 2: Aadhar, DOB, PAN and Loan Type</h2>
+            <div>
+                <label for="pannumber">PAN Number:</label>
+                <input type="text" id="pannumber" name="pannumber" required>
+            </div>
             <div>
                 <label for="aadharnumber">Aadhar Number:</label>
                 <input type="text" id="aadharnumber" name="aadharnumber" required>
@@ -31,26 +39,38 @@
                 <input type="date" id="dob" name="dob" required>
             </div>
             <div>
-                <label for="pannumber">PAN Number:</label>
-                <input type="text" id="pannumber" name="pannumber" required>
+                <label for="loantype">Loan Type:</label>
+                <select id="loantype" name="loantype" required>
+                    <option value="personalloan">Personal Loan</option>
+                    <option value="businessloan">Business Loan</option>
+                    <option value="education">Education Loan</option>
+                    <option value="othersloans">Others</option>
+                </select>
             </div>
             <button type="button" class="btn" (click)="proceedToNextStep(3)">Proceed to Step 3</button>
         </div>
 
         <!-- Form Step 3 (S/O Information) -->
         <div class="form-step" id="step3">
-            <h2>Step 3: Provide Parent's Information</h2>
+            <h2>Step 3: Provide Family Information</h2>
             <div>
-                <label for="soname">Parent's Name:</label>
-                <input type="text" id="soname" name="soname" required>
+                <label for="fname">Father Name:</label>
+                <input type="text" id="fname" name="fname" required>
             </div>
             <div>
-                <label for="sophone">Parent's Phone Number:</label>
-                <input type="tel" id="sophone" name="sophone" required>
+                <label for="mname">Mother Name:</label>
+                <input type="text" id="mname" name="mname" required>
             </div>
             <div>
-                <label for="somail">Parent's Email:</label>
-                <input type="email" id="somail" name="somail" required>
+                <label for="sname">Spouse Name:</label>
+                <input type="text" id="sname" name="sname" required>
+            </div>
+            <div>
+                <label for="relationshiptype">Relationship Type:</label>
+                <select id="relationshiptype" name="relationshiptype" required>
+                    <option value="husband">Husband</option>
+                    <option value="wife">Wife</option>
+                </select>
             </div>
             <button type="button" class="btn" (click)="proceedToNextStep(4)">Proceed to Step 4</button>
         </div>
@@ -69,6 +89,10 @@
                         <input type="text" id="presentaddressline2" name="presentaddressline2">
                     </div>
                     <div>
+                        <label for="presentlandmark">Landmark:</label>
+                        <input type="text" id="presentlandmark" name="presentlandmark">
+                    </div>
+                    <div>
                         <label for="presentstate">State:</label>
                         <input type="text" id="presentstate" name="presentstate" required>
                     </div>
@@ -79,6 +103,10 @@
                     <div>
                         <label for="presentpincode">Pincode:</label>
                         <input type="text" id="presentpincode" name="presentpincode" required>
+                    </div>
+                    <div>
+                        <label for="presentpostaloffice">Postal code:</label>
+                        <input type="text" id="presentpostaloffice" name="presentpostaloffice" required>
                     </div>
                 </div>
             </form>
@@ -99,6 +127,10 @@
                         <input type="text" id="permanentaddressline2" name="permanentaddressline2">
                     </div>
                     <div>
+                        <label for="permanentlandmark">Landmark:</label>
+                        <input type="text" id="permanentlandmark" name="permanentlandmark">
+                    </div>
+                    <div>
                         <label for="permanentstate">State:</label>
                         <input type="text" id="permanentstate" name="permanentstate" required>
                     </div>
@@ -109,6 +141,10 @@
                     <div>
                         <label for="permanentpincode">Pincode:</label>
                         <input type="text" id="permanentpincode" name="permanentpincode" required>
+                    </div>
+                    <div>
+                        <label for="permanentpostaloffice">Postal code:</label>
+                        <input type="text" id="permanentpostaloffice" name="permanentpostaloffice" required>
                     </div>
                     <div>
                         <input type="checkbox" id="copyAddress" (click)="copyPresentAddress()"> 
@@ -124,31 +160,31 @@
             <h2>Step 6: Company Details</h2>
             <div class="address-box">
                 <div>
-                    <label for="companyname">Company Name:</label>
+                    <label for="companyname">Name:</label>
                     <input type="text" id="companyname" name="companyname">
                 </div>
                 <div>
-                    <label for="companyaddressline1">Company Address Line 1:</label>
+                    <label for="companyaddressline1">Address Line 1:</label>
                     <input type="text" id="companyaddressline1" name="companyaddressline1">
                 </div>
                 <div>
-                    <label for="companyaddressline2">Company Address Line 2 (Optional):</label>
+                    <label for="companyaddressline2">Address Line 2 (Optional):</label>
                     <input type="text" id="companyaddressline2" name="companyaddressline2">
                 </div>
                 <div>
-                    <label for="companystate">Company State:</label>
+                    <label for="companystate">State:</label>
                     <input type="text" id="companystate" name="companystate">
                 </div>
                 <div>
-                    <label for="companycountry">Company Country:</label>
+                    <label for="companycountry">Country:</label>
                     <input type="text" id="companycountry" name="companycountry">
                 </div>
                 <div>
-                    <label for="companypincode">Company Pincode:</label>
+                    <label for="companypincode">Pincode:</label>
                     <input type="text" id="companypincode" name="companypincode">
                 </div>
                 <div>
-                    <label for="companyemail">Company Email:</label>
+                    <label for="companyemail">Email:</label>
                     <input type="email" id="companyemail" name="companyemail">
                 </div>
             </div>
@@ -159,12 +195,16 @@
         <div class="form-step" id="step7">
             <h2>Step 7: Loan Details</h2>
             <div>
-                <label for="monthlyincome">Monthly Income:</label>
-                <select id="monthlyincome" name="monthlyincome" required>
-                    <option value="salary">Salary</option>
+                <label for="monthlymode">Salary Mode:</label>
+                <select id="monthlymode" name="monthlymode" required>
+                    <option value="salary">Bank Account</option>
                     <option value="cash">Cash</option>
-                    <option value="check">Check</option>
+                    <option value="check">Cheque</option>
                 </select>
+            </div>
+            <div>
+                <label for="monthlyincome">Montly Income(in INR):</label>
+                <input type="number" id="monthlyincome" name="monthlyincome" required>
             </div>
             <div>
                 <label for="requiredamount">Required Amount (in INR):</label>
@@ -201,6 +241,14 @@
                     <label for="reference1phone">Phone:</label>
                     <input type="tel" id="reference1phone" name="reference1phone">
                 </div>
+                <div>
+                    <label for="referencerelationship1">Relationship Type:</label>
+                    <select id="referencerelationship1" name="referencerelationship1" required>
+                        <option value="family">Family</option>
+                        <option value="friend">Friend</option>
+                        <option value="colleague">Colleague</option>
+                    </select>
+                </div>
             </div>
             <div class="address-box">
                 <h3>Reference 2:</h3>
@@ -212,28 +260,36 @@
                     <label for="reference2phone">Phone:</label>
                     <input type="tel" id="reference2phone" name="reference2phone">
                 </div>
+                <div>
+                    <label for="referencerelationship2">Relationship Type:</label>
+                    <select id="referencerelationship2" name="referencerelationship2" required>
+                        <option value="family">Family</option>
+                        <option value="friend">Friend</option>
+                        <option value="colleague">Colleague</option>
+                    </select>
+                </div>
             </div>
             <button type="button" class="btn" (click)="proceedToNextStep(9)">Proceed to Step 9</button>
         </div>
 
           <!-- Form Step 9 (Nominee Details) -->
         <div class="form-step" id="step9">
-            <h2>Step 9: Nominee Details</h2>
+            <h2>Step 9: Guarantor Details</h2>
             <div class="address-box">
                 <div>
-                    <label for="nomineename">Nominee Name:</label>
+                    <label for="nomineename">Name:</label>
                     <input type="text" id="nomineename" name="nomineename">
                 </div>
                 <div>
-                    <label for="nomineeage">Nominee Age:</label>
-                    <input type="number" id="nomineeage" name="nomineeage">
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="nomineedob" name="dob" required>
                 </div>
                 <div>
-                    <label for="nomineephone">Nominee Phone:</label>
+                    <label for="nomineephone">Phone:</label>
                     <input type="tel" id="nomineephone" name="nomineephone">
                 </div>
                 <div>
-                    <label for="nomineeemail">Nominee Email:</label>
+                    <label for="nomineeemail">Email:</label>
                     <input type="email" id="nomineeemail" name="nomineeemail">
                 </div>
             </div>

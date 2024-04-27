@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RestapiService } from './restapi.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'A2B Digital Login Portal';
+  constructor(public service:RestapiService) { }
 }

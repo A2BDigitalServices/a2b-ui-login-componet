@@ -6,14 +6,6 @@
     margin-left: -20px; /* Adjusting margin to remove white space */
   }
   
-  /* .sidenav {
-    background-color: #333333; 
-    color: #fff;
-    width: 200px;
-    padding: 20px;
-    border-right: 1px solid #ffffff; 
-  } */
-  
   .main {
     flex: 1;
     padding: 20px;

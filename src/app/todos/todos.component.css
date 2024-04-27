@@ -13,5 +13,17 @@ body {
     text-align: center;
   }
   .btn {
-    border-radius: 20px;
+    border-radius:20px;
   }
+
+  .table-responsive {
+    display: table;
+    width: 100%; /* Adjust width as needed */
+    overflow-x: auto; /* Allow horizontal scrolling if content overflows */
+    -ms-overflow-style: -ms-autohiding-scrollbar; /* Optional for smooth scrolling in IE */
+  }
+
+  .search-bar input.form-control {
+    border-color: blue;
+  }
+  

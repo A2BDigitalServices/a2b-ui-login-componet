@@ -1,0 +1,24 @@
+<!-- <div class="container">
+    <div class="content">
+      <div *ngIf="!service.isUserAdmin() && !service.isUserEmployee()" class="text-center mt-4">Sorry ! you don't have access to view modules. Please reach admin@a2bdigital.com</div>
+      <div *ngIf="service.isUserAdmin() || service.isUserEmployee()" class="main">
+        <div class="card" *ngFor="let card of cards">
+          <a style="color: red;">{{ card.name }}</a>
+        </div>
+      </div>
+    </div>
+</div> -->
+
+<div class="container">
+    <div class="content">
+      <div *ngIf="!service.isUserAdmin() && !service.isUserEmployee()" class="text-center mt-4">
+        Sorry ! you don't have access to view modules. Please reach admin@a2bdigital.com
+      </div>
+      <div *ngIf="service.isUserAdmin() || service.isUserEmployee()" class="main">
+        <div class="card" *ngFor="let card of cards">
+          <div class="card-content"> <a style="color: red;">{{ card.name }}</a>
+            <span class="card-number">{{ card.count}}</span> </div>
+        </div>
+      </div>
+    </div>
+  </div>

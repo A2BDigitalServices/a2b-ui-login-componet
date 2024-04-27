@@ -1,11 +1,11 @@
 
-<h1 class="text-center mt-4">***Update Case Status***</h1>
+<h1 class="text-center mt-4">Update Case: {{todo.id}} </h1>
 <body>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<div class="container">
+<div class="container" style="overflow-x: auto;">
   <div class="alert alert-warning" *ngIf="todoForm.invalid">Please fill in all fields</div>
   <form (ngSubmit)="!todoForm.invalid && saveTodo()" #todoForm="ngForm">
-    <fieldset class="form-group">
+    <!-- <fieldset class="form-group">
       <label for="firstname">First Name</label>
       <input type="text" [(ngModel)]="todo.firstname" class="form-control" id="firstname" name="firstname" required>
     </fieldset>
@@ -18,11 +18,21 @@
     <fieldset class="form-group">
       <label for="email">Email</label>
       <input type="email" [(ngModel)]="todo.email" class="form-control" id="email" name="email" required>
-    </fieldset>
+    </fieldset> -->
 
     <fieldset class="form-group">
       <label for="status">Status</label>
-      <input type="text" [(ngModel)]="todo.status" class="form-control" id="status" name="status" required>
+      <!-- <input type="text" [(ngModel)]="todo.status" class="form-control" id="status" name="status" required> -->
+      <select [(ngModel)]="todo.status" class="form-control" id="status" name="status" required>
+        <option value=" ">Please change status</option>
+        <option value="Applied">Applied</option>
+        <option value="Progress">Progress</option>
+        <option value="Pending">Pending</option>
+        <option value="Approved">Approved</option>
+        <option value="Rejected">Rejected</option>
+        <option value="Offered">Offered</option>
+        <option value="Closed">Closed</option>
+      </select>
     </fieldset>
   
     <button type="submit" class="btn btn-success btn-block">Save</button>

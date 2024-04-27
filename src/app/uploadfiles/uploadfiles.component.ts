@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestapiService, CustomFormData } from '../restapi.service';
+import { environment } from 'src/environments/environment';
 
 interface FileUploadData {
   fileType: string;
@@ -42,7 +43,7 @@ export class UploadfilesComponent implements OnInit {
                             'Please enter Reference2 Name','Please enter Reference2 Phone',
                             'Please enter Nominee Name','Please enter Nominee Age',
                             'Please enter Nominee Phone', 'Please enter Nominee Email',
-                            'Please enter Status');
+                            'Please enter Status','Please enter date','Please enter whoapplied');
     if(this.id!=-1){
       this.retriveTodo();
     }
@@ -60,22 +61,57 @@ export class UploadfilesComponent implements OnInit {
   currentFormIndex: number = 0;
   filesPerStep: number = 3; // Number of forms to show in each step
   fileTypes: string[] = [
-    'Pan',
-    'Aadhar',
-    'Image',
+    'PAN Card',
+    'Aadhar Card Front Pic',
+    'Aadhar Card Back Pic',
+    'Selfie',
     'Salary Slips (1)',
     'Salary Slips (2)',
     'Salary Slips (3)',
     'Bank Statement',
     'Present Address Proof',
     'Permanent Address Proof',
-    'Bank Check',
-    'Nominee PAN',
-    'Nominee Aadhar',
-    'Nominee Image'
+    'Cancelled Cheque',
+    'Guarantor PAN',
+    'Guarantor Aadhar',
+    'Guarantor Selfie',
+    'GST Min 1 year',
+    'Labour Licence Min 1 year',
+    'MSME Min 1 year',
+    'Food Licence Min 1 year',
+    'ITR Min 1 year',
+    'House Tax Proof',
+    'Electricity Bill',
+    'House Property Documents'
   ];
 
-  
+  isFormOptional(fileType: string): boolean {
+    const optionalForms = [
+      'PAN Card',
+      'Aadhar Card Front Pic',
+      'Aadhar Card Back Pic',
+      'Selfie',
+      'Salary Slips (1)',
+      'Salary Slips (2)',
+      'Salary Slips (3)',
+      'Bank Statement',
+      'Present Address Proof',
+      'Permanent Address Proof',
+      'Cancelled Cheque',
+      'Guarantor PAN',
+      'Guarantor Aadhar',
+      'Guarantor Selfie',
+      'GST Min 1 year',
+      'Labour Licence Min 1 year',
+      'MSME Min 1 year',
+      'Food Licence Min 1 year',
+      'ITR Min 1 year',
+      'House Tax Proof',
+      'Electricity Bill',
+      'House Property Documents'
+    ];
+    return optionalForms.includes(fileType);
+  }
 
   onFileSelected(event: any, fileType: string) {
     const file = event.target.files[0];
@@ -84,15 +120,17 @@ export class UploadfilesComponent implements OnInit {
 
   proceedNext() {
     // Check if all forms in the current step have been uploaded
-    const startIndex = this.currentFormIndex;
-    const endIndex = Math.min(startIndex + this.filesPerStep, this.fileTypes.length);
-    for (let i = startIndex; i < endIndex; i++) {
-      const fileType = this.fileTypes[i];
-      if (!this.filesToUpload[fileType]) {
-        alert('Please upload files for all forms.');
-        return; // Don't proceed if any form is not uploaded
-      }
-    }
+    // const startIndex = this.currentFormIndex;
+    // const endIndex = Math.min(startIndex + this.filesPerStep, this.fileTypes.length);
+    // for (let i = startIndex; i < endIndex; i++) {
+    //   const fileType = this.fileTypes[i];
+    //   if (!this.isFormOptional(fileType) && !this.filesToUpload[fileType]) {
+    //     alert('Please upload files for all forms.');
+    //     return; // Don't proceed if any form is not uploaded
+    //   }
+    // }
+ 
+
 
     this.currentFormIndex += this.filesPerStep;
     if (this.currentFormIndex >= this.fileTypes.length) {
@@ -101,48 +139,80 @@ export class UploadfilesComponent implements OnInit {
     }
   }
 
-  submitAllFiles() {
-    // Validate if all forms in the last step have been uploaded
-    const startIndex = this.currentFormIndex - this.filesPerStep;
-    const endIndex = this.currentFormIndex;
-    for (let i = startIndex; i < endIndex; i++) {
-      const fileType = this.fileTypes[i];
-      if (!this.filesToUpload[fileType]) {
-        alert('Please upload files for all forms.');
-        return; // Don't submit if any form in the last step is not uploaded
-      }
-    }
+  // submitAllFiles() {
+  //   // Validate if all forms in the last step have been uploaded
+  //   const startIndex = this.currentFormIndex - this.filesPerStep;
+  //   const endIndex = this.currentFormIndex;
+  //   for (let i = startIndex; i < endIndex; i++) {
+  //     const fileType = this.fileTypes[i];
+  //     if (!this.filesToUpload[fileType]) {
+  //       alert('Please upload files for all forms.');
+  //       return; // Don't submit if any form in the last step is not uploaded
+  //     }
+  //   }
 
+  //   // Proceed to submit files
+  //   for (const fileType of this.fileTypes) {
+  //     const fileData = this.filesToUpload[fileType];
+  //     if (fileData) {
+  //       const formData = new FormData();
+  //       formData.append('image', fileData.file);
+
+  //       //this.http.post<any>(`http://localhost:8081/image/${this.id}`, formData).subscribe(
+  //       this.http.post<any>(environment.A2B_DIGITAL_LOGIN_URL + `image/${this.id}`, formData).subscribe(
+  //         response => {
+  //           console.log(`File (${fileType}) uploaded successfully!`, response);
+  //         },
+  //         error => {
+  //           console.error(`Error uploading file (${fileType}):`, error);
+  //           // Handle error
+  //         }
+  //       );
+  //     }
+  //   }
+  //   this.service.modifyTodoAfterUploadDocuments(this.id,this.todo).subscribe(
+  //     data =>{
+  //       this.router.navigate(['home']);
+  //     }
+  //   )
+  //   alert('Thank You!.. All files are uploded successfully');
+  //   //this.router.navigate(['/home'])
+  //   // Reset filesToUpload and currentFormIndex after submission
+  //   this.filesToUpload = {};
+  //   this.currentFormIndex = 0;
+  // }
+
+  submitAllFiles() {
     // Proceed to submit files
     for (const fileType of this.fileTypes) {
-      const fileData = this.filesToUpload[fileType];
-      if (fileData) {
-        const formData = new FormData();
-        formData.append('image', fileData.file);
+        const fileData = this.filesToUpload[fileType];
+        if (fileData) {
+            const formData = new FormData();
+            formData.append('image', fileData.file);
 
-        //this.http.post<any>('http://localhost:8081/image', formData).subscribe(
-        this.http.post<any>('https://a2b-login-java-microservice.onrender.com/image', formData).subscribe(
-          response => {
-            console.log(`File (${fileType}) uploaded successfully!`, response);
-          },
-          error => {
-            console.error(`Error uploading file (${fileType}):`, error);
-            // Handle error
-          }
-        );
-      }
+            //this.http.post<any>(`http://localhost:8081/image/${this.id}`, formData).subscribe(
+            this.http.post<any>(environment.A2B_DIGITAL_LOGIN_URL + `image/${this.id}`, formData).subscribe(
+                response => {
+                    console.log(`File (${fileType}) uploaded successfully!`, response);
+                },
+                error => {
+                    console.error(`Error uploading file (${fileType}):`, error);
+                    // Handle error
+                }
+            );
+        }
     }
-    this.service.modifyTodo(this.id,this.todo).subscribe(
-      data =>{
-        this.router.navigate(['home']);
-      }
+    this.service.modifyTodoAfterUploadDocuments(this.id, this.todo).subscribe(
+        data => {
+            this.router.navigate(['status']);
+        }
     )
     alert('Thank You!.. All files are uploded successfully');
-    //this.router.navigate(['/home'])
     // Reset filesToUpload and currentFormIndex after submission
     this.filesToUpload = {};
     this.currentFormIndex = 0;
-  }
+}
+
 
   getVisibleForms(): string[] {
     const visibleForms: string[] = [];

@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-//import { RestapiService, OpenLoan } from '../restapi.service';
-import { RestapiService, CustomFormData } from '../restapi.service';
+import { CustomFormData, RestapiService } from '../restapi.service';
 
 @Component({
-  selector: 'app-todo',
-  templateUrl: './todo.component.html',
-  styleUrls: ['./todo.component.css']
+  selector: 'app-view-case',
+  templateUrl: './view-case.component.html',
+  styleUrls: ['./view-case.component.css']
 })
-export class TodoComponent implements OnInit {
+export class ViewCaseComponent implements OnInit {
 
   id:any='';
   todo:any
@@ -38,7 +37,7 @@ export class TodoComponent implements OnInit {
                             'Please enter Reference2 Name','Please enter Reference2 Phone',
                             'Please enter Nominee Name','Please enter Nominee Age',
                             'Please enter Nominee Phone', 'Please enter Nominee Email',
-                            'Please enter Status','Please enter Date','Please enter whoapplied');
+                            'Please enter Stattus','Please enter date','Please enter who applied');
     if(this.id!=-1){
       this.retriveTodo();
     }
@@ -50,19 +49,4 @@ export class TodoComponent implements OnInit {
    )
   }
 
-  saveTodo(){
-    if(this.id===-1){
-      this.service.modifyTodo(this.id,this.todo).subscribe(
-        data =>{
-          this.router.navigate(['todos']);
-        }
-      )
-    }else{
-      this.service.modifyTodo(this.id,this.todo).subscribe(
-        data =>{
-          this.router.navigate(['todos']);
-        }
-      )
-    }
-  }
 }

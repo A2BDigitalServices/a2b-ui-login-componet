@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { TempauthService } from '../services/tempauth.service';
-import { RestapiService } from '../restapi.service';
 import { Router } from '@angular/router';
+import { RestapiService } from '../restapi.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-partners',
+  templateUrl: './partners.component.html',
+  styleUrls: ['./partners.component.css']
 })
-export class HomeComponent implements OnInit {
+export class PartnersComponent implements OnInit {
+
   constructor(private router:Router,public service:RestapiService) { }
   cards = [
     { name: 'WeRize', url: 'https://partner.werize.com/homePage' },
@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
     { name: 'Roinet', url: 'https://xpresso.roinet.in/XPRESSO/Login.aspx' },
     { name: 'ICICI Bank', url: 'https://ilens.icicibank.com/login/' }
   ];
+
   ngOnInit(): void {
   }
 

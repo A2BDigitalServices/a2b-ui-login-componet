@@ -5,4 +5,7 @@
 .card {
     background-color: #cce7e8; /* Change the color code to your preferred background color */
 }
-  
+
+.mandatory {
+  color: red;
+}

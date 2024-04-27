@@ -1,0 +1,30 @@
+/* .sidenav {
+    background-color: #333333; 
+    color: #fff;
+    width: 200px;
+    padding: 20px;
+    border-right: 1px solid #ffffff; 
+  } */
+
+/* .main {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  } */
+
+  .app-container {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+  }
+  
+  .sidenav {
+    width: 200px; /* Adjust width as needed */
+  }
+  
+  .main-content {
+    flex: 1;
+    padding: 1rem; /* Add padding as needed */
+  }

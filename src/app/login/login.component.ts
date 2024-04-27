@@ -50,7 +50,8 @@ export class LoginComponent implements OnInit {
     let resp = this.service.login(this.userModel);
     resp.subscribe(data => {
       this.message = data;
-     this.router.navigate(["/home",this.userModel.username])
+      // this.router.navigate(["/home",this.userModel.username])
+      this.router.navigate(["/status",this.userModel.username])
      //window.location.href = 'https://a2bdigitalservice.000webhostapp.com/dashboard.html';
      this.invalidLogin=false;
     },

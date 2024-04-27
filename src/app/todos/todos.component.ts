@@ -12,8 +12,9 @@ export class TodosComponent implements OnInit {
   //todolist: OpenLoan[] = [];
   todolist: CustomFormData[] = [];
   errmssg:string='';
-  delmssg:string=''
-  constructor(private router:Router, private service:RestapiService) { }
+  delmssg:string='';
+  searchTerm: string = ''; // Declare searchTerm variable
+  constructor(private router:Router, public service:RestapiService) { }
 
   ngOnInit(): void {
     this.alltodos();
@@ -50,6 +51,37 @@ addTodo(){
 
 uploadTodo(id:any){
   this.router.navigate(['/upload',id])
+}
+
+sendTodo(id:any){
+  this.router.navigate(['/sendMail',id])
+}
+
+viewTodo(id:any) {
+  this.router.navigate(['/view',id])
+}
+
+search(){
+  if (this.searchTerm.trim() !== '') {
+    this.todolist = [];
+    this.service.getTodo(this.searchTerm.trim()).subscribe(
+      response => {
+        this.todolist.push(response);
+      }      
+   )
+  }else{
+    this.alltodos();
+  }
+}
+
+onSearchTermChange() {
+  // Check if searchTerm is null, undefined, or an empty string
+  if (!this.searchTerm) {
+    // If searchTerm is empty, reset it to an empty string
+    this.searchTerm = '';
+    // You can also trigger the search function here if desired
+    this.search();
+  }
 }
 
 }
